@@ -37,13 +37,13 @@ const PrivateRoute = ({children}) => {
     return  <div>
          {
                Swal.fire({
-                title: 'Are you sure want to delete it?',
-                text: "You won't be able to undo this!",
+                title: 'You need to Login First!',
+                text: "Login Must be Required to Access this Page!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, I will Login!'
             }).then((result) => {
                 if (result.isConfirmed) {
         
