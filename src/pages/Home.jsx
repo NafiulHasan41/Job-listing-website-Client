@@ -1,8 +1,8 @@
 
-
 const Home = () => {
     return (
-        <div>
+        <div>  
+             
               <h1 className=" font-mulish text-red-900 text-xl text-center">This is Home</h1>
         </div>
     );

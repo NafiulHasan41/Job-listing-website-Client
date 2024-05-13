@@ -12,6 +12,8 @@
   "dependencies": {
     "@tanstack/react-query": "^5.36.0",
     "@tanstack/react-query-devtools": "^5.36.0",
+    "alpinejs": "^3.13.10",
+    "axios": "^1.6.8",
     "firebase": "^10.11.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
