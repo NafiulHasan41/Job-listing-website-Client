@@ -6,6 +6,8 @@ import Login from '../pages/Authentication/Login'
 import Register from '../pages/Authentication/Register'
 import PrivateRoute from './PrivateRoutes'
 import JobDetails from '../components/JobDetails'
+import Blog from '../pages/Blog'
+import AllJobs from '../pages/AllJobs'
 
 
 const router = createBrowserRouter([
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
           {
             path: "/register",
             element: <Register/>,
+          },
+          {
+            path: "/blogs",
+            element: <Blog/>,
+          },
+          {
+            path: "/allJobs",
+            element: <AllJobs/>,
           },
           {
             path: '/job/:id',
