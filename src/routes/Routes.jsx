@@ -4,6 +4,9 @@ import ErrorPage from '../pages/ErrorPage'
 import Home from '../pages/Home'
 import Login from '../pages/Authentication/Login'
 import Register from '../pages/Authentication/Register'
+import PrivateRoute from './PrivateRoutes'
+import JobDetails from '../components/JobDetails'
+
 
 const router = createBrowserRouter([
     {
@@ -22,6 +25,17 @@ const router = createBrowserRouter([
           {
             path: "/register",
             element: <Register/>,
+          },
+          {
+            path: '/job/:id',
+            element: (
+
+                <PrivateRoute>
+                    <JobDetails/>
+                </PrivateRoute>
+            
+            )
+         
           },
       ]
     

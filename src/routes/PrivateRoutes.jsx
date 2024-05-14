@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
-import { AuthContext } from '../AuthProvider/AuthProvider';
+
 
 import { Navigate ,useLocation } from 'react-router-dom';
-import Swal from 'sweetalert2';
+
+import useAuth from '../hooks/useAuth';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
 
 const PrivateRoute = ({children}) => {
     
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading } = useAuth();
     const location = useLocation();
 
 
@@ -33,25 +34,13 @@ const PrivateRoute = ({children}) => {
     }
  
      
+    return <>
+    { toast.error('You need to login first') }
+     <Navigate to="/login" state={{ from: location.pathname }} />; 
+     <ToastContainer />
+     </>
 
-    return  <div>
-         {
-               Swal.fire({
-                title: 'You need to Login First!',
-                text: "Login Must be Required to Access this Page!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, I will Login!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-        
-                    <Navigate to="/login" state={{ from: location.pathname }} />;
-                }
-            })
-         }
-    </div>
+   
 };
 PrivateRoute.propTypes = {
     children: PropTypes.node.isRequired,

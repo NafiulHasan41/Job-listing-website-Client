@@ -9,13 +9,14 @@ import { Helmet } from "react-helmet-async";
 
 import { IoEye ,IoEyeOff } from "react-icons/io5";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 
 
 const Login = () => {
 
 
-    const { signIn , signInWithGoogle ,signInWithFacebook ,setLoading } = useAuth();
+    const { user , signIn , signInWithGoogle ,signInWithFacebook ,setLoading } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     
@@ -28,10 +29,17 @@ const Login = () => {
       
 
         signIn(email , password)
-            .then(() => {
+            .then( async () => {
 
                    
-             
+                // get token from server using email
+                      await axios.post(
+                    `${import.meta.env.VITE_API_URL}/jwt`,
+                         {
+                        email: user?.email,
+                       },
+                         { withCredentials: true }
+                        )
 
                 toast.success('User Logged in Successfully');
 
@@ -56,11 +64,23 @@ const Login = () => {
             })
     }
 
-    const handleGoogleLogin = () => {
+    const handleGoogleLogin =  () => {
         signInWithGoogle()
-            .then(() => {
+            .then(async () => {
 
                 toast.success('User Logged in Successfully');
+
+                  // get token from server using email
+                  await axios.post(
+              `${import.meta.env.VITE_API_URL}/jwt`,
+                   {
+                  email: user?.email,
+                 },
+                   { withCredentials: true }
+                  )
+            
+
+
                 navigate(location?.state ? location.state.from : "/");
             })
             .catch(error => {
@@ -73,7 +93,19 @@ const Login = () => {
     const handleFacebookLogin = () => {
 
         signInWithFacebook()
-        .then(() => {
+        .then( async() => {
+
+
+                  // get token from server using email
+                       await axios.post(
+                    `${import.meta.env.VITE_API_URL}/jwt`,
+                         {
+                        email: user?.email,
+                       },
+                         { withCredentials: true }
+                        )
+
+
             toast.success('User Logged in Successfully');
             navigate(location?.state ? location.state.from : "/");
         })
