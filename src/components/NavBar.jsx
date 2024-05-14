@@ -4,6 +4,9 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import useAuth from  '../hooks/useAuth'
 import toast, { Toaster } from 'react-hot-toast';
 
+import logo from '../../public/logo.jpeg'
+
+
 
 const NavBar = () => {
 
@@ -128,7 +131,7 @@ const NavBar = () => {
                 <div className="lg:flex lg:items-center lg:justify-between">
                     <div className="flex items-center justify-between">
                         <Link to='/'>
-                        <img className="w-full h-10 sm:h-10 rounded-lg" src="../../public/logo.jpeg" alt="logo" />
+                        <img className="w-full h-10 sm:h-10 rounded-lg" src={logo} alt="logo" />
                         </Link>
 
                         {/* Mobile menu button */}
@@ -188,7 +191,7 @@ const NavBar = () => {
                                 <button type="button" className="flex items-center focus:outline-none"
                                     aria-label="toggle profile dropdown">
                                     <div title={user?.displayName} className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
-                                        <img   src={user?.photoURL}
+                                        <img   referrerPolicy='no-referrer'  src={user?.photoURL}
                                                    alt={user?.displayName}
                                             className="object-cover w-full h-full"  />
                                     </div>

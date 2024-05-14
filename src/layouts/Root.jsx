@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 const Root = () => {
     return (
         <div> 
-            <div className=" bg-pink-200 ">
+            <div >
                  <NavBar/>
             </div>
             <div className='min-h-[calc(100vh-250px)]'>

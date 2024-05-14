@@ -10,6 +10,10 @@ export default {
         mulish: "'Mulish', sans-serif",
         josefin_sans: "'Josefin Sans', sans-serif",
       },
+         
+      backgroundImage: {
+        'bannerImg': "url('/src/assets/bannerMain.jpeg')",
+      },
     },
   },
   plugins: [

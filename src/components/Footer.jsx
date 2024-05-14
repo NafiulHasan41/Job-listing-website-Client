@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import footerLogo  from '../../public/footerlogo.jpeg'
 
 
 const Footer = () => {
@@ -44,7 +45,7 @@ const Footer = () => {
         
         <div className="flex flex-col gap-4 md:flex-row items-center justify-between">
             <Link href="#">
-                <img className=" w-40 rounded-xl" src="../../public/footerlogo.jpeg" alt=""/>
+                <img className=" w-40 rounded-xl" src={footerLogo} alt=""/>
             </Link>
 
             <div>
