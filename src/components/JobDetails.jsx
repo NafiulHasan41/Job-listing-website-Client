@@ -34,7 +34,7 @@ const JobDetails = () => {
         data-aos-easing="linear"
         data-aos-duration="1500">
         
-    <div className="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+    <div className="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center bg-white rounded-xl my-5">
         <div className="w-full lg:w-1/2 ">
             <div className="lg:max-w-lg">
                 <h1 className="text-3xl font-semibold tracking-wide text-blue-600 dark:text-white lg:text-4xl">

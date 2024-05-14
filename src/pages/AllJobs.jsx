@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 const AllJobs = () => {
@@ -207,7 +208,79 @@ const AllJobs = () => {
            </div>
        </div>
        <div className="lg:w-3/4">
-           this is job card list
+
+
+
+
+          
+
+
+            <div>
+            <div className="overflow-x-auto">
+  <table className="table">
+    {/* head */}
+    <thead>
+      <tr>
+        <th className=" text-[16px] text-blue-600 font-extrabold">Job Title</th>
+        <th className=" text-[16px] text-blue-600 font-extrabold">Job Posting Date</th>
+        <th className=" text-[16px] text-blue-600 font-extrabold">Application Deadline</th>
+        <th className=" text-[16px] text-blue-600 font-extrabold">Salary Range</th>
+        <th className=" text-[16px] text-blue-600 font-extrabold">Category</th>
+        <th className=" text-[16px] text-blue-600 font-extrabold">Details</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {/* row 1 */}
+
+      {
+        jobs?.map(job =>
+
+
+            <tr key={job?._id} className=" bg-blue-100 text-black">
+          <td>
+          <div className="flex items-center gap-3">
+            <div className="avatar">
+              <div className="mask mask-squircle w-12 h-12">
+                <img src={job?.job_banner_url} alt="Avatar Tailwind CSS Component" />
+              </div>
+            </div>
+            <div>
+              <div className="font-bold">{job?.job_title}</div>
+              <div className="text-sm opacity-50">Job Owner: {job?.job_owner?.name}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          {job?.job_posting_date}
+        </td>
+        <td>
+            {job?.application_deadline}
+        </td>
+        <td>
+            {job?.salary_range}
+        </td>
+        <td className=" font-extrabold">
+            {job?.job_category}
+        </td>
+        <td>
+            <Link to={`/job/${job?._id}`}>
+          <button className="btn bg-blue-500 text-white">Details</button>
+          </Link>
+        </td>
+      </tr>
+         )
+      }
+
+      
+
+    </tbody>
+  
+    
+  </table>
+</div>
+            </div>
+
            {/* pagination */}
            <div className='flex justify-center mt-12'>
         {/* Previous Button */}
@@ -241,7 +314,7 @@ const AllJobs = () => {
             onClick={() => handlePaginationButton(btnNum)}
             key={btnNum}
             className={`hidden ${
-              currentPage === btnNum ? 'bg-blue-500 text-white' : ''
+              currentPage === btnNum ? 'bg-[#a0c5c4] text-white' : ''
             } px-4 py-2 mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-blue-500  hover:text-white`}
           >
             {btnNum}
@@ -272,7 +345,7 @@ const AllJobs = () => {
             </svg>
           </div>
         </button>
-      </div>
+           </div>
        </div>
    </div>
     );
