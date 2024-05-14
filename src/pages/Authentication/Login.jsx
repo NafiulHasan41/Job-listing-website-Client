@@ -65,7 +65,7 @@ const Login = () => {
             })
             .catch(error => {
     
-                toast(error.message);
+                toast.error(error.message);
                 setLoading(false);
             })
     }
@@ -95,23 +95,22 @@ const Login = () => {
           <Helmet>
             <title>CareerCanvas : Login</title>
         </Helmet>
-       <div className="hero gap-1 md:min-h-[500px] bg-gradient-to-r from-cyan-500 to-cyan-200 rounded-3xl shadow-2xl shadow-cyan-500/70 text-red-500">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-            <div className="text-center lg:text-left">
-                <h1 className=" text-xl md:text-3xl lg:text-5xl font-bold">Login now!</h1>
-                <p className=" py-3 md:py-6 text-[16px]">Start your Journey  with us . We welcome you!</p>
+       <div className="hero gap-1 md:min-h-[500px] mt-3 ">
+        <div className="hero-content w-full mx-auto flex-col lg:flex-row-reverse">
+            <div className=" flex-1 text-center lg:text-left">
+                <img className=" rounded-xl" src="https://img.freepik.com/free-vector/login-concept-illustration_114360-739.jpg" alt="" />
             </div>
-            <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-gradient-to-b from-cyan-500 to-cyan-200 ">
+            <div className=" flex-1 card shrink-0 w-full max-w-sm md:max-w-full shadow-2xl bg-[#a0c5c4] ">
                 <form onSubmit={handleLogin} className="card-body">
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-xl text-red-600 font-bold">Email</span>
+                            <span className="label-text text-xl text-[#86664b] font-bold">Email</span>
                         </label>
                         <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-xl text-red-600 font-bold">Password</span>
+                            <span className="label-text text-xl text-[#86664b] font-bold">Password</span>
                             
                         </label>
                        <div className=" relative"> 
@@ -126,19 +125,19 @@ const Login = () => {
                        
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn bg-green-400 text-red-600 border-none text-xs md:text-xl ">Login</button>
+                        <button className="btn  text-[#86664b] border-none text-xs md:text-xl ">Login</button>
                     </div>
 
                 </form>
 
                 <div className=" text-center">
-                     <p className=" mb-2 text-center text-xl"> Login with </p>
+                     <p className=" mb-2 text-[#86664b] text-center text-xl"> Login with </p>
                     <button onClick={handleGoogleLogin} className="btn border-none text-2xl mx-5">  <FcGoogle/> </button>
                     <button onClick={handleFacebookLogin} className="btn border-none text-2xl text-blue-600 font-extrabold">  <FaFacebook/> </button>
                 </div>
 
                 <label className="label text-center  justify-center text-xl">
-                        <p className=" mx-3 font-bold"> New User ?</p>    <Link to="/register"  className="label-text-alt btn bg-rose-500 border-black  text-xl text-black"> Register</Link>
+                        <p className=" mx-3 text-[#86664b] font-bold"> New User ?</p>    <Link to="/register"  className="label-text-alt btn  border-none  text-xl text-[#86664b]"> Register</Link>
                         </label>
             </div>
         </div>

@@ -75,49 +75,54 @@ const NavBar = () => {
         <>
          
             <NavLink to="/"  className={({ isActive }) =>
-                  isActive ? "text-black bg-white hover:bg-cyan-700 font-bold btn  border-none" : "font-bold my-2 hover:bg-cyan-700  md:mx-2 text-black bg-[#ffc3a0] rounded-lg btn  border-none"
+                  isActive ? " text-white hover:bg-cyan-700 font-bold   border-none" : "font-bold my-2 hover:bg-cyan-700  md:mx-2  text-black rounded-lg  border-none"
                 }>Home</NavLink>
          
             <NavLink to="/aboutUs"  className={({ isActive }) =>
-                  isActive ? "text-black bg-white hover:bg-cyan-700 font-bold border-none" : "font-bold my-2  hover:bg-cyan-700 md:mx-2 text-black bg-[#ffc3a0] rounded-lg btn  border-none"
+                  isActive ? " text-white hover:bg-cyan-700 font-bold border-none" : "font-bold my-2  hover:bg-cyan-700 md:mx-2 text-black rounded-lg  border-none"
                 }>About Us</NavLink>
         
             <NavLink to="/allJobs"
             className={({ isActive }) =>
-            isActive ? "text-black bg-white font-bold hover:bg-cyan-700 text-[14px] border-none " : "  hover:bg-cyan-700 text-[14px] font-bold my-2  md:mx-2 text-black bg-[#ffc3a0] rounded-lg  btn  border-none "
+            isActive ? " text-white font-bold hover:bg-cyan-700  border-none " : "  hover:bg-cyan-700  font-bold my-2  md:mx-2 text-black  rounded-lg   border-none "
           }>All Jobs</NavLink>
+
+            <NavLink to="/blogs"
+            className={({ isActive }) =>
+            isActive ? " text-white font-bold hover:bg-cyan-700  border-none " : "  hover:bg-cyan-700  font-bold my-2  md:mx-2 text-black  rounded-lg   border-none "
+          }>Blogs</NavLink>
          
     
           {user ? (
-            <li>
+           
               <NavLink to="/addAJob" className={({ isActive }) =>
-                  isActive ? "text-black bg-white font-bold  text-[14px] border-none hover:bg-cyan-700" : " hover:bg-cyan-700 text-[14px] font-bold my-2  md:mx-2 text-black bg-[#ffc3a0] rounded-lg btn  border-none"
+                  isActive ? " text-white font-bold   border-none hover:bg-cyan-700" : " hover:bg-cyan-700  font-bold my-2  md:mx-2 text-black rounded-lg   border-none"
                 }>Add A Job</NavLink>
-            </li>
+        
           ) : null}
 
           {user ? (
-            <li>
+            
               <NavLink to="/myJobs" className={({ isActive }) =>
-                  isActive ? "text-black bg-white font-bold  text-[14px] border-none hover:bg-cyan-700" : " hover:bg-cyan-700 text-[14px] font-bold my-2  md:mx-2 text-black bg-[#ffc3a0] rounded-lg btn  border-none"
+                  isActive ? "text-white  font-bold   border-none hover:bg-cyan-700" : " hover:bg-cyan-700  font-bold my-2  md:mx-2 text-black rounded-lg  border-none"
                 }>MyJobs</NavLink>
-            </li>
+           
           ) : null}
 
 
           {user ? (
-            <li>
+         
               <NavLink to="appliedJob" className={({ isActive }) =>
-                  isActive ? "text-black bg-white font-bold text-[14px] border-none hover:bg-cyan-700 " : "  hover:bg-cyan-700 text-[14px] font-bold my-2  md:mx-2 text-black bg-[#ffc3a0] rounded-lg btn  border-none"
+                  isActive ? "text-white  font-bold  border-none hover:bg-cyan-700 " : "  hover:bg-cyan-700  font-bold my-2  md:mx-2 text-black  rounded-lg   border-none"
                 }>Applied Jobs</NavLink>
-            </li>
+            
           ) : null}
         </>
       );
 
     return (
         <div>
-    <div className='  '>
+    <div >
         <nav className="  relative bg-[#a0c5c4]  shadow-xl ">
             <div className="container px-3 py-3 mx-auto">
                 <div className="lg:flex lg:items-center lg:justify-between">
@@ -182,9 +187,10 @@ const NavBar = () => {
                                 {user ? (
                                 <button type="button" className="flex items-center focus:outline-none"
                                     aria-label="toggle profile dropdown">
-                                    <div title='name' className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
-                                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                                            className="object-cover w-full h-full" alt="avatar" />
+                                    <div title={user?.displayName} className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
+                                        <img   src={user?.photoURL}
+                                                   alt={user?.displayName}
+                                            className="object-cover w-full h-full"  />
                                     </div>
 
                                 </button>
@@ -194,7 +200,7 @@ const NavBar = () => {
                             <div>
                                 {user ? (
                                 <button onClick={handleLogOut}
-                                    className="btn text-[8px] hover:bg-cyan-700  lg:text-xl  bg-rose-500  border-none text-black">
+                                    className="btn  hover:bg-cyan-700  lg:text-xl  bg-white border-none text-black">
                                     Logout
                                 </button>
                                 ) : (

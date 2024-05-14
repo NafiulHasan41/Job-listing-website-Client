@@ -42,10 +42,14 @@ const Footer = () => {
         
         <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-700"/>
         
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-4 md:flex-row items-center justify-between">
             <Link href="#">
                 <img className=" w-40 rounded-xl" src="../../public/footerlogo.jpeg" alt=""/>
             </Link>
+
+            <div>
+                <p className="text-sm text-gray-800 dark:text-gray-300">© 2024 CareerCanvas. All rights reserved.</p>
+            </div>
             
             <div className="flex -mx-2">
                 <Link href="#" className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Reddit">
