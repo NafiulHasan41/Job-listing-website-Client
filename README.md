@@ -19,6 +19,8 @@
     - customized using search implementation 
     - filltering the job 
     - add job apply job edit job just like freelancer.com my website is fully functional
+    - Did pagination 
+    - different login system
    
 
 ## Project NPM packages 
