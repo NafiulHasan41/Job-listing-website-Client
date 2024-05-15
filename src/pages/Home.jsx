@@ -4,7 +4,12 @@ import { motion } from "framer-motion";
 import TabCategories from "../components/TabCategories";
 
 
+
+
 const Home = () => {
+
+    
+
     return (
         <div>  
              <Banner/>
@@ -23,6 +28,36 @@ const Home = () => {
              <div>
                 <TabCategories/>
              </div>
+                 
+                 
+        
+               
+                <div>
+                <div className=" mt-5 ">
+            <h1 className="text-xl md:text-4xl text-cyan-500 text-center">Contact Us</h1>
+         <div className="mx-auto  rounded-3xl p-4 md:p-10 shadow-2xl ">
+            <div className=" md:w-[50%] mx-auto">
+            <label className="input input-bordered flex items-center my-2 md:my-5">
+           Name
+           <input type="text" className="grow" placeholder="" />
+       </label>
+       <label className="input input-bordered flex items-center my-2 md:my-5">
+           Email
+           <input type="email" className="grow" placeholder="" />
+       </label>
+            </div>
+
+            <div className=" text-center md:w-[50%] mx-auto">
+            <textarea placeholder="Description" className="textarea textarea-bordered textarea-lg w-full" ></textarea>
+            </div>
+
+            <div className="md:w-[50%] mx-auto my-5">
+            <button className="btn btn-primary w-full ">Submit</button>
+            </div>
+      
+   </div>
+         </div>
+                </div>
 
 
         </div>
