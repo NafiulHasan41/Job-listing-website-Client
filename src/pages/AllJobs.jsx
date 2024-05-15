@@ -55,7 +55,7 @@ const AllJobs = () => {
     getCount()
   }, [filter, search])
 
-  console.log(count)
+ 
   const numberOfPages = Math.ceil(count / itemsPerPage)
   const pages = [...Array(numberOfPages).keys()].map(element => element + 1)
 

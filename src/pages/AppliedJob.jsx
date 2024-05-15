@@ -3,7 +3,17 @@ import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
+
+
 const AppliedJob = () => {
+   
+    //for pdf 
+
+   
+    
+
+
+
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
 
@@ -22,7 +32,8 @@ const AppliedJob = () => {
 
     }
     return (
-        <div className=" my-8">
+        <>
+        <div className=" my-8" >
              <div><h1 className=" text-center text-xl font-bold text-blue-500">My applied job section</h1></div>
              <div className=" my-5 m-5 lg:m-10">
               <select onChange={e=> {
@@ -109,6 +120,9 @@ const AppliedJob = () => {
   </table>
 </div>
         </div>
+
+        
+        </>
     );
 };
 

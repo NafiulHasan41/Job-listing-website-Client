@@ -40,14 +40,14 @@ const handleAddJob = async (e) => {
     const addData = {job_banner_url, job_title, job_owner : {name , email } , job_category , salary_range, job_description, job_posting_date ,
     application_deadline, job_applicants_number}
 
-    console.log(addData);
+   
 
     try {
-        const { data } = await axios.post(
+         await axios.post(
           `${import.meta.env.VITE_API_URL}/job`,
           addData
         )
-        console.log(data)
+       
         toast.success('Job Added Successfully!')
         e.target.reset();
        

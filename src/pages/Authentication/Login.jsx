@@ -62,7 +62,7 @@ const Login = () => {
         try {
             
             const result = await signInWithGoogle()
-            console.log(result.user)
+           
       
             await axios.post(
               `${import.meta.env.VITE_API_URL}/jwt`,

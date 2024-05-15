@@ -70,20 +70,19 @@ const JobDetails = () => {
 
          const{ application_deadline , job_applicants_number , job_banner_url , job_description , job_owner , job_title , salary_range , job_category , job_posting_date } = data;
          const applyJobId = data?._id;
-         console.log("applyJobId", applyJobId);
-         console.log("job_owner", job_owner);
+         
           
          const applicant = { name: user?.displayName , email: user?.email , applyDate  : applyDate , Cv_Url: Cv_Url };
 
          
        const applyData = { applyJobId , application_deadline , job_applicants_number , job_banner_url , job_description , job_owner , job_title , salary_range , job_category , job_posting_date , applicant};
           
-       console.log("outside axios ", applyData);
+      
         
        try {
 
         await axiosSecure.post(`/apply`, applyData)
-        console.log(" inside axios ", applyData);
+       
         toast.success('Applied job Successfully!')
         e.target.reset();
         navigate('/');
