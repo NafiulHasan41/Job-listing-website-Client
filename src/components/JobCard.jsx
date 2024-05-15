@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import 'react-datepicker/dist/react-datepicker.css'
 
 
 const JobCard = ( {job} ) => {
 
-
+     
     return (
         <div className="w-full max-w-sm px-4 py-3  rounded-md shadow-xl shadow-blue-300 hover:scale-[1.1] space-y-5 bg-[#a0c5c4] ">
     <div className="flex items-center justify-between">
         <span className="text-sm font-semibold text-blue-600 dark:text-gray-400">{job?.job_owner?.name} </span>
-        <span className="px-3 py-1 text-xs text-black  bg-red-500 rounded-full ">Deadline :{job?.application_deadline} </span>
+        <span className="px-3 py-1 text-xs text-black  bg-red-500 rounded-full ">Deadline :{ new Date(job?.application_deadline).toLocaleDateString()} </span>
     </div>
 
     <div>
@@ -20,7 +21,7 @@ const JobCard = ( {job} ) => {
     <div>
        
        <div className="  gap-3">
-       <h1 className="mt-2 text-lg font-semibold text-gray-800 dark:text-white">Posting date :<span className='text-sm font-semibold text-blue-600'> {job?.job_posting_date}</span> </h1>
+       <h1 className="mt-2 text-lg font-semibold text-gray-800 dark:text-white">Posting date :<span className='text-sm font-semibold text-blue-600'> {new Date(job?.job_posting_date).toLocaleDateString()}</span> </h1>
        <h1 className="mt-2 text-lg font-semibold text-gray-800 dark:text-white"><span className='text-sm font-semibold text-blue-600'> {job?.salary_range} </span></h1>
           
        </div>

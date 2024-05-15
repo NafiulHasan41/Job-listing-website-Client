@@ -112,7 +112,7 @@ const NavBar = () => {
 
           {user ? (
          
-              <NavLink to="appliedJob" className={({ isActive }) =>
+              <NavLink to="/appliedJob" className={({ isActive }) =>
                   isActive ? "text-white  font-bold  border-none hover:bg-cyan-700 " : "  hover:bg-cyan-700  font-bold my-2  md:mx-2 text-black  rounded-lg   border-none"
                 }>Applied Jobs</NavLink>
             

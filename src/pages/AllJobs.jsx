@@ -250,10 +250,10 @@ const AllJobs = () => {
           </div>
         </td>
         <td>
-          {job?.job_posting_date}
+          {new Date(job?.job_posting_date).toLocaleDateString()}
         </td>
         <td>
-            {job?.application_deadline}
+            {new Date(job?.application_deadline).toLocaleDateString()}
         </td>
         <td>
             {job?.salary_range}

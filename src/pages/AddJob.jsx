@@ -33,8 +33,8 @@ const handleAddJob = async (e) => {
     const salary_range = form.salaryRange.value;
     const job_description = form.description.value;
     const job_applicants_number = parseInt(form.applicationNumber.value);
-    const job_posting_date = postingDate.toLocaleDateString();
-    const application_deadline = startDate.toLocaleDateString();
+    const job_posting_date = postingDate;
+    const application_deadline = startDate;
     const job_category = jobCategory;
 
     const addData = {job_banner_url, job_title, job_owner : {name , email } , job_category , salary_range, job_description, job_posting_date ,

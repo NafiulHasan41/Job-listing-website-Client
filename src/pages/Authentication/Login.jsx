@@ -16,103 +16,94 @@ import axios from "axios";
 const Login = () => {
 
 
-    const { user , signIn , signInWithGoogle ,signInWithFacebook ,setLoading } = useAuth();
+    const {  signIn , signInWithGoogle ,signInWithFacebook  } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     
 
-    const handleLogin = e => {
+    const handleLogin = async e => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const email = form.get('email');
         const password = form.get('password');
       
-
-        signIn(email , password)
-            .then( async () => {
-
-                   
-                // get token from server using email
-                      await axios.post(
-                    `${import.meta.env.VITE_API_URL}/jwt`,
-                         {
-                        email: user?.email,
-                       },
-                         { withCredentials: true }
-                        )
-
-                toast.success('User Logged in Successfully');
-
-                  if( location.state === "/login")
-                  {
-                    navigate("/")
-                  }
-                  else
-                  {
-                    navigate(location?.state ? location.state.from : "/");
-                  }
-                 
-               
-
-            })
-            .catch( (error) => {
-              
-                toast.error(error.message);
-                setLoading(false);
-               
-                
-            })
-    }
-
-    const handleGoogleLogin =  () => {
-        signInWithGoogle()
-            .then(async () => {
-
-                toast.success('User Logged in Successfully');
-
-                  // get token from server using email
-                  await axios.post(
+        try {
+            //User Login
+            const result = await signIn(email, password)
+           
+            await axios.post(
               `${import.meta.env.VITE_API_URL}/jwt`,
-                   {
-                  email: user?.email,
-                 },
-                   { withCredentials: true }
-                  )
-            
+              {
+                email: result?.user?.email,
+              },
+              { withCredentials: true }
+            )
+           
+          
+            toast.success('Login Successful')
+
+            if( location.state === "/login")
+                {
+                  navigate("/")
+                }
+                else
+                {
+                  navigate(location?.state ? location.state.from : "/");
+                }
 
 
-                navigate(location?.state ? location.state.from : "/");
-            })
-            .catch(error => {
-    
-                toast.error(error.message);
-                setLoading(false);
-            })
+          } catch (err) {
+            console.log(err)
+            toast.error(err?.message)
+          }
     }
 
-    const handleFacebookLogin = () => {
-
-        signInWithFacebook()
-        .then( async() => {
-
-
-                  // get token from server using email
-                       await axios.post(
-                    `${import.meta.env.VITE_API_URL}/jwt`,
-                         {
-                        email: user?.email,
-                       },
-                         { withCredentials: true }
-                        )
-
-
-            toast.success('User Logged in Successfully');
+    const handleGoogleLogin = async () => {
+        try {
+            
+            const result = await signInWithGoogle()
+            console.log(result.user)
+      
+            await axios.post(
+              `${import.meta.env.VITE_API_URL}/jwt`,
+              {
+                email: result?.user?.email,
+              },
+              { withCredentials: true }
+            )
+           
+            toast.success('Login Successful')
             navigate(location?.state ? location.state.from : "/");
-        })
-        .catch(error => {
-            toast.error(error.message);
-            setLoading(false);
-        })
+
+          } catch (err) {
+            console.log(err)
+            toast.error(err?.message)
+          }
+    }
+
+    const handleFacebookLogin = async () => {
+
+        
+        try {
+           
+            const result = await signInWithFacebook()
+          
+      
+           
+             await axios.post(
+              `${import.meta.env.VITE_API_URL}/jwt`,
+              {
+                email: result?.user?.email,
+              },
+              { withCredentials: true }
+            )
+          
+            toast.success('Login Successful')
+            navigate(location?.state ? location.state.from : "/");
+          } catch (err) {
+            console.log(err)
+            toast.error(err?.message)
+          }
     };
 
 
