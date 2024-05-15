@@ -4,22 +4,24 @@ import axios from "axios";
 import SkeletonSingle from "./SkeletonSingle";
 import { ToastContainer, toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure"
 
 
 
 const JobDetails = () => {
 
-
+    const navigate = useNavigate()
+    const axiosSecure = useAxiosSecure()
    
-
+    
     const { user } = useAuth();
 
     const id = useParams().id;
 
     
 
-    const { data, isLoading , isError , error } = useQuery({
+    const { data , isLoading , isError , error } = useQuery({
       queryFn: async () => {
            
         const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobs/${id}`);
@@ -30,7 +32,7 @@ const JobDetails = () => {
       queryKey: ['oneJob', id],
     })
       
-    const [ temp ,setTemp] = useState([]);
+ 
     
    
     if(isLoading) return <SkeletonSingle/>
@@ -64,24 +66,28 @@ const JobDetails = () => {
         const applyDate = new Date(Date.now()).toLocaleDateString();
 
       
-         setTemp(data);
+        
 
-         const{ application_deadline , job_applicants_number , job_banner_url , job_description , job_owner , job_title , salary_range , job_category , job_posting_date } = temp;
-         const applyJobId = temp._id;
+         const{ application_deadline , job_applicants_number , job_banner_url , job_description , job_owner , job_title , salary_range , job_category , job_posting_date } = data;
+         const applyJobId = data?._id;
+         console.log("applyJobId", applyJobId);
+         console.log("job_owner", job_owner);
           
          const applicant = { name: user?.displayName , email: user?.email , applyDate  : applyDate , Cv_Url: Cv_Url };
 
          
        const applyData = { applyJobId , application_deadline , job_applicants_number , job_banner_url , job_description , job_owner , job_title , salary_range , job_category , job_posting_date , applicant};
-
+          
+       console.log("outside axios ", applyData);
         
        try {
 
-        await axios.post(`${import.meta.env.VITE_API_URL}/apply`, applyData)
-        
-        toast.success('Bid Placed Successfully!')
+        await axiosSecure.post(`/apply`, applyData)
+        console.log(" inside axios ", applyData);
+        toast.success('Applied job Successfully!')
         e.target.reset();
-        
+        navigate('/');
+
        
       } catch (err) {
 

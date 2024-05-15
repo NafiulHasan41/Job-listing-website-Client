@@ -280,7 +280,7 @@ const AllJobs = () => {
             </div>
 
            {/* pagination */}
-           <div className='flex justify-center mt-12'>
+           <div className='flex justify-center mt-12 overflow-x-auto w-full' >
         {/* Previous Button */}
         <button
           disabled={currentPage === 1}
