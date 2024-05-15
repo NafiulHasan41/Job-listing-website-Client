@@ -81,9 +81,6 @@ const NavBar = () => {
                   isActive ? " text-white hover:bg-cyan-700 font-bold   border-none" : "font-bold my-2 hover:bg-cyan-700  md:mx-2  text-black rounded-lg  border-none"
                 }>Home</NavLink>
          
-            <NavLink to="/aboutUs"  className={({ isActive }) =>
-                  isActive ? " text-white hover:bg-cyan-700 font-bold border-none" : "font-bold my-2  hover:bg-cyan-700 md:mx-2 text-black rounded-lg  border-none"
-                }>About Us</NavLink>
         
             <NavLink to="/allJobs"
             className={({ isActive }) =>

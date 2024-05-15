@@ -24,7 +24,6 @@ const Footer = () => {
 
                 <div className="flex flex-col items-start mt-5 space-y-2">
                     <Link to='/' className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Home</Link>
-                    <Link to='/aboutUs' className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Who We Are</Link>
                     <Link to='/allJobs' className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">All Jobs</Link>
                 </div>
             </div>
@@ -33,10 +32,10 @@ const Footer = () => {
                 <p className="font-semibold text-gray-800 dark:text-white">Job Category</p>
 
                 <div className="flex flex-col items-start mt-5 space-y-2">
-                    <Link  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Remote Job</Link>
-                    <Link  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">On-site job</Link>
-                    <Link  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Hybrid</Link>
-                    <Link  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Part-time</Link>
+                    <Link to='/allJobs' className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Remote Job</Link>
+                    <Link to='/allJobs' className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">On-site job</Link>
+                    <Link to='/allJobs' className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Hybrid</Link>
+                    <Link to='/allJobs' className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Part-time</Link>
                 </div>
             </div>
         </div>

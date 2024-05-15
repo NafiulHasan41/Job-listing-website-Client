@@ -61,7 +61,7 @@ const AllJobs = () => {
 
   //  handle pagination button
   const handlePaginationButton = value => {
-    console.log(value)
+   
     setCurrentPage(value)
   }
   const handleReset = () => {
@@ -78,9 +78,7 @@ const AllJobs = () => {
     setSearch(searchText)
   }
 
-  console.log("search",search)
-  console.log(jobs);
-  console.log("filter",filter);
+
 
 
     return (

@@ -1,15 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import SkeletonSingle from "./SkeletonSingle";
+import { ToastContainer, toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
+import { useState } from "react";
+
 
 
 const JobDetails = () => {
 
 
-    const id = useParams().id;
    
+
+    const { user } = useAuth();
+
+    const id = useParams().id;
+
+    
 
     const { data, isLoading , isError , error } = useQuery({
       queryFn: async () => {
@@ -21,11 +29,73 @@ const JobDetails = () => {
       },
       queryKey: ['oneJob', id],
     })
-     
+      
+    const [ temp ,setTemp] = useState([]);
+    
    
     if(isLoading) return <SkeletonSingle/>
 
     if(isError) return <div> An error occured : {error.message}</div>
+
+
+   
+
+
+    const currentDate = new Date(Date.now());
+    const deadlineDate = new Date(data?.application_deadline);
+    
+    // Convert dates to milliseconds
+    const currentTime = currentDate.getTime();
+    const deadlineTime = deadlineDate.getTime();
+
+    const handleApply = async (e) => {
+        e.preventDefault();
+        if(user?.email === data?.job_owner?.email)
+        {
+            return toast.error('You cannot apply to your own job');
+        }
+
+        if(currentTime > deadlineTime)
+        {
+            return toast.error('Application deadline has passed');
+        }
+        const form = e.target;
+        const Cv_Url = form.cv_url.value;
+        const applyDate = new Date(Date.now()).toLocaleDateString();
+
+      
+         setTemp(data);
+
+         const{ application_deadline , job_applicants_number , job_banner_url , job_description , job_owner , job_title , salary_range , job_category , job_posting_date } = temp;
+         const applyJobId = temp._id;
+          
+         const applicant = { name: user?.displayName , email: user?.email , applyDate  : applyDate , Cv_Url: Cv_Url };
+
+         
+       const applyData = { applyJobId , application_deadline , job_applicants_number , job_banner_url , job_description , job_owner , job_title , salary_range , job_category , job_posting_date , applicant};
+
+        
+       try {
+
+        await axios.post(`${import.meta.env.VITE_API_URL}/apply`, applyData)
+        
+        toast.success('Bid Placed Successfully!')
+        e.target.reset();
+        
+       
+      } catch (err) {
+
+        toast.success(err.response.data)
+        e.target.reset()
+       
+      }
+
+       
+
+
+
+    }
+
 
 
     
@@ -49,15 +119,21 @@ const JobDetails = () => {
 
                     <p className="flex items-center mx-2 text-blue-700 justify-start ">
                     
-                        <span className="mx-2">Salary Range :</span> <span className=" badge bg-red-500 text-[#273c3b]"> {data?.salary_range}</span>
+                        <span className="mx-2">Salary Range :</span> <span className="  text-[#273c3b]"> {data?.salary_range}</span>
                     </p>
                     <p className="flex items-center mx-2 text-blue-700 justify-start ">
                     
-                        <span className="mx-2">Number of Application :</span> <span className=" text-[#a9cac9]"> {data?.job_applicants_number}</span>
+                        <span className="mx-2">Number of Application :</span> <span className=" text-black"> {data?.job_applicants_number}</span>
+                    </p>
+                    <p className="flex items-center mx-2 text-blue-700 justify-start ">
+                    
+                        <span className="mx-2">Job Owner :</span> <span className=" text-black"> Name: {data?.job_owner?.name} <br />
+                        Email: {data?.job_owner?.email} <br />
+                        </span>
                     </p>
 
                     
-                    <button className="w-full px-5 py-2 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-400 font-bold rounded-lg lg:w-auto  hover:bg-blue-300 hover:scale-[1.1] focus:outline-none focus:bg-blue-500">
+                    <button onClick={()=>document.getElementById('my_modal_5').showModal()}  className="w-full px-5 py-2 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-400 font-bold rounded-lg lg:w-auto  hover:bg-blue-300 hover:scale-[1.1] focus:outline-none focus:bg-blue-500">
                           Apply
                         </button>
                   
@@ -70,8 +146,47 @@ const JobDetails = () => {
             <img className="object-cover w-full h-full mx-auto rounded-md lg:max-w-2xl" src={data?.job_banner_url} alt="glasses photo"/>
         </div>
     </div>
+    {/* modal dialog */}
 
-        </div>
+    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+       <div className="modal-box bg-[#a0c5c4]">
+           <form onSubmit={handleApply} >
+           <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-[#86664b] text-xl font-bold">Name</span>
+                        </label>
+                        <input type="text" name="name" placeholder="Name" className="input input-bordered" defaultValue={user?.displayName} readOnly />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-[#86664b] text-xl font-bold">Email</span>
+                        </label>
+                        <input type="email" name="email" placeholder="Email" className="input input-bordered" defaultValue={user?.email} readOnly />
+                    </div>
+
+
+                <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-[#86664b] text-xl font-bold">CV URL</span>
+                        </label>
+                        <input type="url"  name="cv_url" placeholder="CV-URL" className="input input-bordered" required />
+                    </div>
+
+                    <div className="form-control mt-6">
+                        <button className="btn   text-black bg-blue-400 hover:scale-[1.05] border-none text-xs md:text-xl">Apply</button>
+                    </div>
+           </form>
+           <div className="modal-action">
+               <form method="dialog">
+                   <button className="btn">Close</button>
+               </form>
+           </div>
+       </div>
+   </dialog>
+
+   <ToastContainer />
+
+</div>
     );
 };
 
