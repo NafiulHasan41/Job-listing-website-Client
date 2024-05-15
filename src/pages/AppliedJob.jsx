@@ -94,7 +94,7 @@ const AppliedJob = () => {
          
           
           
-            <button className="btn bg-green-500 text-white">Update</button>
+            <button className="btn bg-green-500 text-white">Download PDF</button>
            
         </td>
       </tr>
