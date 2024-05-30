@@ -88,7 +88,7 @@ const JobUpdate = () => {
             )
            
             toast.success('Job Data Updated Successfully!')
-            navigate('/myJobs')
+            navigate('dashBoard/myJobs')
           } catch (err) {
             console.log(err)
             toast.error(err.message)

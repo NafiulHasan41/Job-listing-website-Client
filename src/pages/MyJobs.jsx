@@ -116,7 +116,7 @@ const MyJobs = () => {
            
           <button onClick={() => handleDelete(job._id)} className="btn bg-red-500 text-white">Delete</button>
           
-            <Link to={`/updateJob/${job?._id}`}>
+            <Link to={`updateJob/${job?._id}`}>
             <button className="btn bg-green-500 text-white">Update</button>
            </Link>
         </td>

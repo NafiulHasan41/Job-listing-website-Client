@@ -93,28 +93,12 @@ const NavBar = () => {
           }>Blogs</NavLink>
          
     
-          {user ? (
-           
-              <NavLink to="/addAJob" className={({ isActive }) =>
-                  isActive ? " text-white font-bold   border-none hover:bg-cyan-700" : " hover:bg-cyan-700  font-bold my-2  md:mx-2 text-black rounded-lg   border-none"
-                }>Add A Job</NavLink>
-        
-          ) : null}
-
-          {user ? (
-            
-              <NavLink to="/myJobs" className={({ isActive }) =>
-                  isActive ? "text-white  font-bold   border-none hover:bg-cyan-700" : " hover:bg-cyan-700  font-bold my-2  md:mx-2 text-black rounded-lg  border-none"
-                }>MyJobs</NavLink>
-           
-          ) : null}
-
 
           {user ? (
          
-              <NavLink to="/appliedJob" className={({ isActive }) =>
+              <NavLink to="/dashBoard" className={({ isActive }) =>
                   isActive ? "text-white  font-bold  border-none hover:bg-cyan-700 " : "  hover:bg-cyan-700  font-bold my-2  md:mx-2 text-black  rounded-lg   border-none"
-                }>Applied Jobs</NavLink>
+                }>Dashboard</NavLink>
             
           ) : null}
         </>

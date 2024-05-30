@@ -12,6 +12,7 @@ import AddJob from '../pages/AddJob'
 import MyJobs from '../pages/MyJobs'
 import JobUpdate from '../pages/JobUpdate'
 import AppliedJob from '../pages/AppliedJob'
+import Dashboard from '../pages/Dashboard/Dashboard'
 
 
 const router = createBrowserRouter([
@@ -51,50 +52,61 @@ const router = createBrowserRouter([
             )
          
           },
-          {
-            path: '/addAJob',
-            element: (
+        
 
-                <PrivateRoute>
-                    <AddJob/>
-                </PrivateRoute>
-            
-            )
-         
-          },
-          {
-            path: '/myJobs',
-            element: (
-
-                <PrivateRoute>
-                    <MyJobs/>
-                </PrivateRoute>
-            
-            )
-         
-          },
-          {
-            path: '/appliedJob',
-            element: (
-
-                <PrivateRoute>
-                    <AppliedJob/>
-                </PrivateRoute>
-            
-            )
-         
-          },
-          {
-            path: '/updateJob/:id',
-            element: (
-              <PrivateRoute>
-                <JobUpdate />
-              </PrivateRoute>
-            )
-          },
       ]
     
     },
+    {
+      path: '/dashBoard',
+      element: <Dashboard />,
+      errorElement: <ErrorPage />,
+      children:[
+        {
+          path: 'addAJob',
+          element: (
+
+              <PrivateRoute>
+                  <AddJob/>
+              </PrivateRoute>
+          
+          )
+       
+        },
+        {
+          path: 'myJobs',
+          element: (
+
+              <PrivateRoute>
+                  <MyJobs/>
+              </PrivateRoute>
+          
+          )
+       
+        },
+        {
+          path: 'myJobs/updateJob/:id',
+          element: (
+            <PrivateRoute>
+              <JobUpdate />
+            </PrivateRoute>
+          )
+        },
+        {
+          path: 'appliedJob',
+          element: (
+
+              <PrivateRoute>
+                  <AppliedJob/>
+              </PrivateRoute>
+          
+          )
+       
+        },
+       
+
+      ]
+    }
   ])
   
   export default router
