@@ -26,7 +26,7 @@ const Dashboard = () => {
                                
                                 {/* Mobile menu button */}
                                 <div className="flex lg:hidden">
-                                    <p className=" font-semibold text-blue-500 mx-2">Bar </p>
+                                    <p className=" font-semibold text-blue-500 mx-2">DashBoard </p>
                                     <button onClick={toggleMenu} type="button"
                                         className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
                                         aria-label="toggle menu">
